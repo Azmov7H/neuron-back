@@ -13,7 +13,7 @@ independently buildable and deployable.
 
 | Document | Purpose |
 | --- | --- |
-| Full plan | [`docs/backend-decoupling-plan.md`](https://github.com/Azmov7H/neuron/blob/rd/ui-02/explore/docs/backend-decoupling-plan.md) in the frontend repo (branch `rd/ui-02/explore`, not yet merged) |
+| Full plan | `docs/backend-decoupling-plan.md` in the frontend repo (currently uncommitted on `rd/ui-02/explore`) |
 | [`docs/adr/0001-backend-repository-and-stack.md`](docs/adr/0001-backend-repository-and-stack.md) | Why two repositories, the backend stack, and how shared packages are distributed |
 | [`docs/legacy-route-inventory.md`](docs/legacy-route-inventory.md) | Generated inventory of all 85 legacy route handlers and 124 operations |
 | [`docs/baseline.md`](docs/baseline.md) | Measurement protocol, metric definitions, and acceptance budgets |
