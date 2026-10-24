@@ -1,0 +1,1755 @@
+{
+  "capturedAt": "2026-10-24T23:47:54.875Z",
+  "serverVersion": "8.0.4",
+  "database": "neuron",
+  "collectionCount": 36,
+  "collections": [
+    {
+      "name": "anatomyaicaches",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "structureKey_1",
+          "key": {
+            "structureKey": 1
+          }
+        },
+        {
+          "name": "pathologyKey_1",
+          "key": {
+            "pathologyKey": 1
+          }
+        },
+        {
+          "name": "structureKey_1_pathologyKey_1",
+          "key": {
+            "structureKey": 1,
+            "pathologyKey": 1
+          },
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "anatomysimulations",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          }
+        },
+        {
+          "name": "simulationType_1",
+          "key": {
+            "simulationType": 1
+          }
+        },
+        {
+          "name": "timestamp_1",
+          "key": {
+            "timestamp": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "anatomystructures",
+      "type": "collection",
+      "options": {},
+      "count": 6,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "key_1",
+          "key": {
+            "key": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "systemKey_1",
+          "key": {
+            "systemKey": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "anatomysystems",
+      "type": "collection",
+      "options": {},
+      "count": 7,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "key_1",
+          "key": {
+            "key": 1
+          },
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "auditlogs",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "actorId_1",
+          "key": {
+            "actorId": 1
+          }
+        },
+        {
+          "name": "actorRole_1",
+          "key": {
+            "actorRole": 1
+          }
+        },
+        {
+          "name": "action_1",
+          "key": {
+            "action": 1
+          }
+        },
+        {
+          "name": "entity_1",
+          "key": {
+            "entity": 1
+          }
+        },
+        {
+          "name": "entityId_1",
+          "key": {
+            "entityId": 1
+          }
+        },
+        {
+          "name": "actorId_1_createdAt_-1",
+          "key": {
+            "actorId": 1,
+            "createdAt": -1
+          }
+        },
+        {
+          "name": "action_1_createdAt_-1",
+          "key": {
+            "action": 1,
+            "createdAt": -1
+          }
+        },
+        {
+          "name": "entity_1_entityId_1_createdAt_-1",
+          "key": {
+            "entity": 1,
+            "entityId": 1,
+            "createdAt": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "citations",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "citationId_1",
+          "key": {
+            "citationId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "type_1",
+          "key": {
+            "type": 1
+          }
+        },
+        {
+          "name": "relatedConceptIds_1",
+          "key": {
+            "relatedConceptIds": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "cognitiveprofiles",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "confidenceScore_-1",
+          "key": {
+            "confidenceScore": -1
+          }
+        },
+        {
+          "name": "masteryScore_-1",
+          "key": {
+            "masteryScore": -1
+          }
+        },
+        {
+          "name": "lastUpdated_-1",
+          "key": {
+            "lastUpdated": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "concepts",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "conceptId_1",
+          "key": {
+            "conceptId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "slug_1",
+          "key": {
+            "slug": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "title_1",
+          "key": {
+            "title": 1
+          }
+        },
+        {
+          "name": "field_1",
+          "key": {
+            "field": 1
+          }
+        },
+        {
+          "name": "difficulty_1",
+          "key": {
+            "difficulty": 1
+          }
+        },
+        {
+          "name": "importance_1",
+          "key": {
+            "importance": 1
+          }
+        },
+        {
+          "name": "learningLevel_1",
+          "key": {
+            "learningLevel": 1
+          }
+        },
+        {
+          "name": "relatedConcepts_1",
+          "key": {
+            "relatedConcepts": 1
+          }
+        },
+        {
+          "name": "prerequisites_1",
+          "key": {
+            "prerequisites": 1
+          }
+        },
+        {
+          "name": "views_1",
+          "key": {
+            "views": 1
+          }
+        },
+        {
+          "name": "isPublished_1",
+          "key": {
+            "isPublished": 1
+          }
+        },
+        {
+          "name": "field_1_importance_-1",
+          "key": {
+            "field": 1,
+            "importance": -1
+          }
+        },
+        {
+          "name": "field_1_difficulty_1",
+          "key": {
+            "field": 1,
+            "difficulty": 1
+          }
+        },
+        {
+          "name": "field_1_isPublished_1",
+          "key": {
+            "field": 1,
+            "isPublished": 1
+          }
+        },
+        {
+          "name": "learningLevel_1_difficulty_1",
+          "key": {
+            "learningLevel": 1,
+            "difficulty": 1
+          }
+        },
+        {
+          "name": "isPublished_1_views_-1",
+          "key": {
+            "isPublished": 1,
+            "views": -1
+          }
+        },
+        {
+          "name": "concept_text",
+          "key": {
+            "_fts": "text",
+            "_ftsx": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "discoveries",
+      "type": "collection",
+      "options": {},
+      "count": 97,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          }
+        },
+        {
+          "name": "conceptId_1",
+          "key": {
+            "conceptId": 1
+          }
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "importance_1",
+          "key": {
+            "importance": 1
+          }
+        },
+        {
+          "name": "userInterest_1",
+          "key": {
+            "userInterest": 1
+          }
+        },
+        {
+          "name": "discoveredAt_1",
+          "key": {
+            "discoveredAt": 1
+          }
+        },
+        {
+          "name": "userId_1_domain_1",
+          "key": {
+            "userId": 1,
+            "domain": 1
+          }
+        },
+        {
+          "name": "userId_1_discoveredAt_-1",
+          "key": {
+            "userId": 1,
+            "discoveredAt": -1
+          }
+        },
+        {
+          "name": "domain_1_importance_-1",
+          "key": {
+            "domain": 1,
+            "importance": -1
+          }
+        },
+        {
+          "name": "userId_1_userInterest_-1",
+          "key": {
+            "userId": 1,
+            "userInterest": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "domainmetas",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "slug_1",
+          "key": {
+            "slug": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "conceptCount_1",
+          "key": {
+            "conceptCount": 1
+          }
+        },
+        {
+          "name": "isActive_1",
+          "key": {
+            "isActive": 1
+          }
+        },
+        {
+          "name": "parentDomain_1",
+          "key": {
+            "parentDomain": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "domains",
+      "type": "collection",
+      "options": {},
+      "count": 8,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "slug_1",
+          "key": {
+            "slug": 1
+          },
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "encyclopediaarticles",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "articleId_1",
+          "key": {
+            "articleId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "slug_1",
+          "key": {
+            "slug": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "title_1",
+          "key": {
+            "title": 1
+          }
+        },
+        {
+          "name": "conceptId_1",
+          "key": {
+            "conceptId": 1
+          }
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "isFeatured_1",
+          "key": {
+            "isFeatured": 1
+          }
+        },
+        {
+          "name": "views_1",
+          "key": {
+            "views": 1
+          }
+        },
+        {
+          "name": "isPublished_1",
+          "key": {
+            "isPublished": 1
+          }
+        },
+        {
+          "name": "article_text",
+          "key": {
+            "_fts": "text",
+            "_ftsx": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "equations",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "equationId_1",
+          "key": {
+            "equationId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "conceptIds_1",
+          "key": {
+            "conceptIds": 1
+          }
+        },
+        {
+          "name": "isPublished_1",
+          "key": {
+            "isPublished": 1
+          }
+        },
+        {
+          "name": "equation_text",
+          "key": {
+            "_fts": "text",
+            "_ftsx": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "evolutionlogs",
+      "type": "collection",
+      "options": {},
+      "count": 123,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          }
+        },
+        {
+          "name": "userId_1_createdAt_-1",
+          "key": {
+            "userId": 1,
+            "createdAt": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "experiments",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "experimentId_1",
+          "key": {
+            "experimentId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "slug_1",
+          "key": {
+            "slug": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "title_1",
+          "key": {
+            "title": 1
+          }
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "conceptIds_1",
+          "key": {
+            "conceptIds": 1
+          }
+        },
+        {
+          "name": "difficulty_1",
+          "key": {
+            "difficulty": 1
+          }
+        },
+        {
+          "name": "isPublished_1",
+          "key": {
+            "isPublished": 1
+          }
+        },
+        {
+          "name": "experiment_text",
+          "key": {
+            "_fts": "text",
+            "_ftsx": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "exploreactivities",
+      "type": "collection",
+      "options": {},
+      "count": 14,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1_createdAt_-1",
+          "key": {
+            "userId": 1,
+            "createdAt": -1
+          }
+        },
+        {
+          "name": "action_1_createdAt_-1_targetId_1",
+          "key": {
+            "action": 1,
+            "createdAt": -1,
+            "targetId": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "glossaryterms",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "termId_1",
+          "key": {
+            "termId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "term_1",
+          "key": {
+            "term": 1
+          }
+        },
+        {
+          "name": "slug_1",
+          "key": {
+            "slug": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "relatedConceptIds_1",
+          "key": {
+            "relatedConceptIds": 1
+          }
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "difficulty_1",
+          "key": {
+            "difficulty": 1
+          }
+        },
+        {
+          "name": "isPublished_1",
+          "key": {
+            "isPublished": 1
+          }
+        },
+        {
+          "name": "glossary_text",
+          "key": {
+            "_fts": "text",
+            "_ftsx": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "knowledgegraphs",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "edges.source_1",
+          "key": {
+            "edges.source": 1
+          }
+        },
+        {
+          "name": "edges.target_1",
+          "key": {
+            "edges.target": 1
+          }
+        },
+        {
+          "name": "lastUpdated_1",
+          "key": {
+            "lastUpdated": 1
+          }
+        },
+        {
+          "name": "userId_1_lastUpdated_-1",
+          "key": {
+            "userId": 1,
+            "lastUpdated": -1
+          }
+        },
+        {
+          "name": "nodes.domain_1",
+          "key": {
+            "nodes.domain": 1
+          }
+        },
+        {
+          "name": "nodes.difficulty_1",
+          "key": {
+            "nodes.difficulty": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "knowledges",
+      "type": "collection",
+      "options": {},
+      "count": 6,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "title_1",
+          "key": {
+            "title": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "difficulty_1",
+          "key": {
+            "difficulty": 1
+          }
+        },
+        {
+          "name": "domain_1_tags_1",
+          "key": {
+            "domain": 1,
+            "tags": 1
+          }
+        },
+        {
+          "name": "title_text_explanation_text_tags_text",
+          "key": {
+            "_fts": "text",
+            "_ftsx": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "learninganalytics",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "lastUpdated_1",
+          "key": {
+            "lastUpdated": 1
+          }
+        },
+        {
+          "name": "userId_1_lastUpdated_-1",
+          "key": {
+            "userId": 1,
+            "lastUpdated": -1
+          }
+        },
+        {
+          "name": "daily.date_1",
+          "key": {
+            "daily.date": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "learningtimelines",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "overallProgress_1",
+          "key": {
+            "overallProgress": 1
+          }
+        },
+        {
+          "name": "masteredConcepts_1",
+          "key": {
+            "masteredConcepts": 1
+          }
+        },
+        {
+          "name": "userId_1_overallProgress_-1",
+          "key": {
+            "userId": 1,
+            "overallProgress": -1
+          }
+        },
+        {
+          "name": "updatedAt_-1",
+          "key": {
+            "updatedAt": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "neuralpaths",
+      "type": "collection",
+      "options": {},
+      "count": 6,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "slug_1",
+          "key": {
+            "slug": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "difficulty_1",
+          "key": {
+            "difficulty": 1
+          }
+        },
+        {
+          "name": "isActive_1",
+          "key": {
+            "isActive": 1
+          }
+        },
+        {
+          "name": "domain_1_isActive_1",
+          "key": {
+            "domain": 1,
+            "isActive": 1
+          }
+        },
+        {
+          "name": "difficulty_1_isActive_1",
+          "key": {
+            "difficulty": 1,
+            "isActive": 1
+          }
+        },
+        {
+          "name": "completionRate_-1",
+          "key": {
+            "completionRate": -1
+          }
+        },
+        {
+          "name": "createdAt_-1",
+          "key": {
+            "createdAt": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "recommendationprofiles",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          },
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "recommendations",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          }
+        },
+        {
+          "name": "type_1",
+          "key": {
+            "type": 1
+          }
+        },
+        {
+          "name": "targetId_1",
+          "key": {
+            "targetId": 1
+          }
+        },
+        {
+          "name": "relevanceScore_1",
+          "key": {
+            "relevanceScore": 1
+          }
+        },
+        {
+          "name": "createdAt_1",
+          "key": {
+            "createdAt": 1
+          }
+        },
+        {
+          "name": "expiresAt_1",
+          "key": {
+            "expiresAt": 1
+          },
+          "expireAfterSeconds": 0
+        },
+        {
+          "name": "userId_1_type_1_createdAt_-1",
+          "key": {
+            "userId": 1,
+            "type": 1,
+            "createdAt": -1
+          }
+        },
+        {
+          "name": "userId_1_relevanceScore_-1",
+          "key": {
+            "userId": 1,
+            "relevanceScore": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "references",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "referenceId_1",
+          "key": {
+            "referenceId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "concepts_1",
+          "key": {
+            "concepts": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "relationships",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "sourceId_1",
+          "key": {
+            "sourceId": 1
+          }
+        },
+        {
+          "name": "targetId_1",
+          "key": {
+            "targetId": 1
+          }
+        },
+        {
+          "name": "type_1",
+          "key": {
+            "type": 1
+          }
+        },
+        {
+          "name": "sourceId_1_type_1",
+          "key": {
+            "sourceId": 1,
+            "type": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "scientists",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "scientistId_1",
+          "key": {
+            "scientistId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "slug_1",
+          "key": {
+            "slug": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "name_1",
+          "key": {
+            "name": 1
+          }
+        },
+        {
+          "name": "fields_1",
+          "key": {
+            "fields": 1
+          }
+        },
+        {
+          "name": "isPublished_1",
+          "key": {
+            "isPublished": 1
+          }
+        },
+        {
+          "name": "scientist_text",
+          "key": {
+            "_fts": "text",
+            "_ftsx": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "simulationconfigs",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "domainKey_1",
+          "key": {
+            "domainKey": 1
+          },
+          "unique": true
+        }
+      ]
+    },
+    {
+      "name": "simulationhistories",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          }
+        },
+        {
+          "name": "lastUpdated_1",
+          "key": {
+            "lastUpdated": 1
+          }
+        },
+        {
+          "name": "userId_1_lastUpdated_-1",
+          "key": {
+            "userId": 1,
+            "lastUpdated": -1
+          }
+        },
+        {
+          "name": "simulations.bestScore_-1",
+          "key": {
+            "simulations.bestScore": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "simulationruns",
+      "type": "collection",
+      "options": {},
+      "count": 1,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "simulationId_1",
+          "key": {
+            "simulationId": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          }
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "timestamp_1",
+          "key": {
+            "timestamp": 1
+          }
+        },
+        {
+          "name": "userId_1_domain_1_timestamp_-1",
+          "key": {
+            "userId": 1,
+            "domain": 1,
+            "timestamp": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "sparksessions",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          }
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "createdAt_1",
+          "key": {
+            "createdAt": 1
+          }
+        },
+        {
+          "name": "expiresAt_1",
+          "key": {
+            "expiresAt": 1
+          },
+          "expireAfterSeconds": 0
+        },
+        {
+          "name": "userId_1_domain_1_createdAt_-1",
+          "key": {
+            "userId": 1,
+            "domain": 1,
+            "createdAt": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "taxonomynodes",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "nodeId_1",
+          "key": {
+            "nodeId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "parentId_1",
+          "key": {
+            "parentId": 1
+          }
+        },
+        {
+          "name": "conceptId_1",
+          "key": {
+            "conceptId": 1
+          }
+        },
+        {
+          "name": "level_1",
+          "key": {
+            "level": 1
+          }
+        },
+        {
+          "name": "path_1",
+          "key": {
+            "path": 1
+          }
+        },
+        {
+          "name": "isLeaf_1",
+          "key": {
+            "isLeaf": 1
+          }
+        },
+        {
+          "name": "domain_1_level_1",
+          "key": {
+            "domain": 1,
+            "level": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "timelineevents",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "eventId_1",
+          "key": {
+            "eventId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "title_1",
+          "key": {
+            "title": 1
+          }
+        },
+        {
+          "name": "year_1",
+          "key": {
+            "year": 1
+          }
+        },
+        {
+          "name": "domain_1",
+          "key": {
+            "domain": 1
+          }
+        },
+        {
+          "name": "significance_1",
+          "key": {
+            "significance": 1
+          }
+        }
+      ]
+    },
+    {
+      "name": "usermemories",
+      "type": "collection",
+      "options": {},
+      "count": 0,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "recentConcepts.concept_1",
+          "key": {
+            "recentConcepts.concept": 1
+          }
+        },
+        {
+          "name": "recentConcepts.domain_1",
+          "key": {
+            "recentConcepts.domain": 1
+          }
+        },
+        {
+          "name": "recentConcepts.firstDiscovered_1",
+          "key": {
+            "recentConcepts.firstDiscovered": 1
+          }
+        },
+        {
+          "name": "recentConcepts.lastRevisited_1",
+          "key": {
+            "recentConcepts.lastRevisited": 1
+          }
+        },
+        {
+          "name": "longTermInterests_1",
+          "key": {
+            "longTermInterests": 1
+          }
+        },
+        {
+          "name": "masteredConcepts_1",
+          "key": {
+            "masteredConcepts": 1
+          }
+        },
+        {
+          "name": "interactionHistory.targetId_1",
+          "key": {
+            "interactionHistory.targetId": 1
+          }
+        },
+        {
+          "name": "interactionHistory.timestamp_1",
+          "key": {
+            "interactionHistory.timestamp": 1
+          }
+        },
+        {
+          "name": "lastUpdated_1",
+          "key": {
+            "lastUpdated": 1
+          }
+        },
+        {
+          "name": "userId_1_lastUpdated_-1",
+          "key": {
+            "userId": 1,
+            "lastUpdated": -1
+          }
+        },
+        {
+          "name": "recentConcepts.lastRevisited_-1",
+          "key": {
+            "recentConcepts.lastRevisited": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "userprogresses",
+      "type": "collection",
+      "options": {},
+      "count": 5,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "userId_1",
+          "key": {
+            "userId": 1
+          }
+        },
+        {
+          "name": "pathId_1",
+          "key": {
+            "pathId": 1
+          }
+        },
+        {
+          "name": "overallCompletion_1",
+          "key": {
+            "overallCompletion": 1
+          }
+        },
+        {
+          "name": "lastAccessedAt_1",
+          "key": {
+            "lastAccessedAt": 1
+          }
+        },
+        {
+          "name": "userId_1_pathId_1",
+          "key": {
+            "userId": 1,
+            "pathId": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "userId_1_lastAccessedAt_-1",
+          "key": {
+            "userId": 1,
+            "lastAccessedAt": -1
+          }
+        },
+        {
+          "name": "pathId_1_overallCompletion_-1",
+          "key": {
+            "pathId": 1,
+            "overallCompletion": -1
+          }
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "type": "collection",
+      "options": {},
+      "count": 4,
+      "indexes": [
+        {
+          "name": "_id_",
+          "key": {
+            "_id": 1
+          }
+        },
+        {
+          "name": "username_1",
+          "key": {
+            "username": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "email_1",
+          "key": {
+            "email": 1
+          },
+          "unique": true
+        },
+        {
+          "name": "totalXP_1",
+          "key": {
+            "totalXP": 1
+          }
+        },
+        {
+          "name": "totalXP_-1",
+          "key": {
+            "totalXP": -1
+          }
+        },
+        {
+          "name": "createdAt_-1",
+          "key": {
+            "createdAt": -1
+          }
+        },
+        {
+          "name": "role_1",
+          "key": {
+            "role": 1
+          }
+        }
+      ]
+    }
+  ]
+}
