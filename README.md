@@ -6,9 +6,9 @@ This repository is the backend half of the frontend/backend split. The Next.js a
 stays in [`Azmov7H/neuron`](https://github.com/Azmov7H/neuron). The two applications are
 independently buildable and deployable.
 
-> **Status:** T00 complete on `chore/decouple-00-baseline`; T01 workspace and release pipeline
-> on `chore/decouple-01-workspace`. No NestJS runtime code yet; the API application is
-> scaffolded in T04.
+> **Status:** T00 and the backend half of T01 are merged. The frontend half of T01
+> (`NEXT_PUBLIC_API_BASE_URL` and the import-boundary guard) is in progress. No NestJS runtime
+> code yet; the API application is scaffolded in T04.
 
 ## Documents
 
@@ -22,6 +22,7 @@ independently buildable and deployable.
 | [`docs/mongo-fingerprint.json`](docs/mongo-fingerprint.json)                                     | Read-only collection and index fingerprint captured at T00                                           |
 | [`docs/tasks/T00-baseline.md`](docs/tasks/T00-baseline.md)                                       | T00 branch, scope, evidence, and exit gate                                                           |
 | [`docs/tasks/T01-workspace.md`](docs/tasks/T01-workspace.md)                                     | T01 workspace, tooling, release pipeline, and the blocked frontend half                              |
+| [`docs/deployment.md`](docs/deployment.md)                                                       | Frontend/backend hosting boundaries and the Vercel misconfiguration guard                            |
 
 ## Principles
 
