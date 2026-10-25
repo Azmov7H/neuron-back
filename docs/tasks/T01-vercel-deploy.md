@@ -51,7 +51,12 @@ pnpm format:check  OK
 vercel dev -L      OK   Nest builder compiled the entry and served:
                         GET /api/v1/health -> 200 JSON
                         GET /api/v1        -> 200 JSON
+GitHub status      OK   Vercel: "Deployment has completed" for 6327d74
 ```
+
+The preview deployment exists at the branch alias and is guarded by Vercel's default
+Deployment Protection (SSO redirect), which is expected for preview environments. Production is
+verified after merge.
 
 `vercel dev -L` output confirmed the framework builder, not a hand-written adapter:
 
@@ -72,6 +77,7 @@ is recorded in ADR-002 and in the deployment troubleshooting section.
 - [x] Nest application builds to `dist/main.js`
 - [x] HTTP tests cover health, CORS allow/deny, security headers, and 404 JSON
 - [x] Vercel Nest builder serves the app locally
+- [x] Preview deployment built by Vercel from GitHub
 - [x] No `git.deploymentEnabled: false` remains
 - [x] Deployment, environment, and rollback steps documented
 - [ ] Production deployment verified after the branch merges (requires the Vercel project link)

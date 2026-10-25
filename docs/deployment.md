@@ -67,6 +67,22 @@ Expected shape:
 is `Cache-Control: no-store`, carries Helmet's security headers, and includes CORS headers only
 for allowlisted origins.
 
+### Preview deployment protection
+
+New Vercel projects enable **Deployment Protection** for preview deployments, so
+`curl https://<branch-alias>.vercel.app/api/v1/health` returns a `302` to Vercel SSO instead of
+the API. That is expected and does not mean the function failed to build.
+
+To let a frontend preview call the API preview, either:
+
+- add a [Protection Bypass for Automation](https://vercel.com/docs/deployment-protection#protection-bypass-for-automation)
+  secret and send `x-vercel-protection-bypass` plus `x-vercel-set-bypass-cookie` from the
+  frontend server, or
+- disable Deployment Protection for the project in **Settings → Deployment Protection**.
+
+Production deployments are not protected by the default "Standard Protection" setting. Do not
+disable protection for production just to test a preview.
+
 ## Local production parity
 
 ```bash
