@@ -10,6 +10,27 @@ application with a pinned version.
 
 The scope must match the GitHub owner (`@azmov7h`) because GitHub Packages requires it.
 
+## Contents
+
+`@azmov7h/neuron-contracts`
+
+- response envelope and error codes (`AppError`, `ERROR_CODES`)
+- roles and RBAC hierarchy
+- `/api/v1` route constants, including encoded dynamic builders
+- auth cookie/CSRF/JWT transport constants and DTOs
+- cross-cutting DTOs (dashboard, navigation, notifications, dock, simulation history)
+- pure Zod schemas for auth, profile, neural paths, spark, discovery, cognitive, knowledge
+
+`@azmov7h/neuron-simulation-core`
+
+- the 48-simulation registry and canonical domain/parameter types
+- NL interpretation schemas and the pure resolver/prompt builders
+- audit, deterministic fallback, snapshot sanitization, equation presentation
+- Lotka–Volterra integration, simulation state classification, history-limit guard
+- the simulation config wire builder and simulation-run request schemas
+
+Neither package may import Mongoose, Next.js, NestJS, or read environment variables.
+
 ## Versioning
 
 - `0.x` while the migration is in progress.
