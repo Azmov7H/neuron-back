@@ -51,21 +51,34 @@ stays on pnpm 10.15.0; the two repositories have independent lockfiles and CI. p
 invokes itself for workspace scripts, so aligning `packageManager` with the host avoids a
 version-guard failure inside `pnpm verify`.
 
-## Frontend half (`neuron`) — blocked
+## Frontend half (`neuron`) — in progress
+
+Branch: `chore/decouple-01-workspace` in `neuron`, cut from `rd/ui-02/explore` after `5aa4c1e`
+was pushed.
 
 The frontend changes are:
 
 1. `src/lib/api/client.ts`: prefix requests with `NEXT_PUBLIC_API_BASE_URL`, default `''`
-   (same-origin), strip a trailing slash, and cover it with a unit test.
+   (same-origin), strip a trailing slash, and cover it with unit tests.
 2. `scripts/check-backend-imports.mjs`: fail on new imports of `@/database`, `@/modules`,
    `@/lib/auth`, `@/lib/redis`, `@/lib/ai`, `@/config/env`, `@/middleware/auth`, or backend-only
-   packages outside `app/api`. Warn mode with a committed baseline until T16.
-3. No raw `fetch` migration; SSE call sites move in T15/T16.
+   packages outside `app/api`. Warn mode with a committed 23-entry baseline until T16.
+3. `.github/workflows/boundaries.yml`: runs the guard on pull requests with
+   `continue-on-error: true`.
+4. No raw `fetch` migration; SSE call sites move in T15/T16.
 
-**Blocker:** the local `rd/ui-02/explore` branch is one commit ahead of its remote
-(`5aa4c1e`, the P3 simulation integrity fix). Creating the T01 branch from local HEAD would
-include that unpushed commit in the T01 PR. The frontend half starts after `5aa4c1e` is pushed
-or merged.
+### Frontend evidence
+
+```text
+vitest run src/lib/api/__tests__/client.test.ts   8 passed
+vitest run                                        180 passed (14 files)
+tsc --noEmit                                      OK
+eslint <changed files>                            OK
+node scripts/check-backend-imports.mjs            23 baseline, 0 new
+```
+
+The guard was also tested with a temporary file importing `@/database/connection`; it reported
+one new violation and exited 1.
 
 ## Exit gate
 
