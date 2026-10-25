@@ -165,14 +165,14 @@ duplication is temporary and ends in T02, not in T21.
 
 ## Follow-ups
 
-1. **Plan amendment for T01 (needs sign-off before T01 starts).** The original T01 moved the
-   Next.js app into `frontend/` and made the root a pnpm workspace. That is no longer applicable.
-   Proposed replacement scope:
+1. **Plan amendment for T01 (approved 2026-10-25).** The repository owner selected
+   "two repositories + GitHub Packages". The original T01, which moved the Next.js app into
+   `frontend/` and made the root a pnpm workspace, no longer applies. Replacement scope:
    - In `neuron-back`: create the pnpm workspace (`apps/api`, `packages/contracts`,
      `packages/simulation-core`), lint/format/typecheck/test CI, Dependabot, and the GitHub
      Packages release workflow. No Nest application yet.
    - In `neuron`: add `NEXT_PUBLIC_API_BASE_URL` support to the typed client, defaulting to
-     same-origin so behavior is unchanged, and add a non-blocking CI guard against new imports
+     same-origin so behavior is unchanged, and add a non-blocking guard against new imports
      of backend modules outside `app/api`.
    - Exit: both repositories build; no runtime behavior changes; a path-import fixture proves
      the frontend can target an external API base URL.

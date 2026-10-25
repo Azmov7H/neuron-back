@@ -80,8 +80,16 @@ Rollback: revert this branch. It adds documentation and read-only scripts only.
 The two unchecked items require an isolated environment and belong to T03. They do not block
 T01, which only creates the workspace and release pipeline.
 
-## Open decision
+## Decision (approved 2026-10-25)
 
-`docs/adr/0001-backend-repository-and-stack.md` proposes a replacement scope for T01 because
-the original "move Next.js into `frontend/`" step no longer applies to a two-repository split.
-T01 must not start until that amendment is approved.
+The repository owner selected **two repositories + GitHub Packages**. ADR-001 is accepted as
+written, including the replacement T01 scope. T01 may start; it must not assume a `frontend/`
+directory move or a Vercel root change.
+
+T01 is split across the two repositories:
+
+- `neuron-back` on `chore/decouple-01-workspace`: pnpm workspace, packages, CI, Dependabot,
+  and the GitHub Packages release pipeline.
+- `neuron` on the same branch name: `NEXT_PUBLIC_API_BASE_URL` support and the import-boundary
+  guard. This half is blocked until the local `rd/ui-02/explore` commit `5aa4c1e` is pushed,
+  because branching now would include the user's unpushed work in the T01 PR.
