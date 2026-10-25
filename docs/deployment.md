@@ -28,6 +28,24 @@ Choose one:
 Do not add an empty `public/` directory to silence the error. It would publish an empty site and
 hide a real configuration problem.
 
+### Automatic deployments are disabled
+
+`vercel.json` sets `git.deploymentEnabled` to `false`. This keeps the GitHub integration
+connected for PR comments and metadata but stops Vercel from building every push as a static
+site:
+
+```json
+{
+  "git": {
+    "deploymentEnabled": false
+  }
+}
+```
+
+Remove that setting only after the project is intentionally configured for the API (container
+or serverless, decided in T04). Deleting the Vercel project is also safe; the file is harmless
+without one.
+
 ## Environment separation
 
 | Variable                                   | Frontend | Backend |
