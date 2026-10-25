@@ -1,0 +1,72 @@
+name: Release packages
+
+on:
+  push:
+    tags:
+      - contracts-v*
+      - simulation-core-v*
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.15.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+          scope: '@azmov7h'
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Resolve package from tag
+        id: target
+        run: |
+          case "$GITHUB_REF_NAME" in
+            contracts-v*)
+              echo "name=@azmov7h/neuron-contracts" >> "$GITHUB_OUTPUT"
+              echo "dir=packages/contracts" >> "$GITHUB_OUTPUT"
+              echo "version=${GITHUB_REF_NAME#contracts-v}" >> "$GITHUB_OUTPUT"
+              ;;
+            simulation-core-v*)
+              echo "name=@azmov7h/neuron-simulation-core" >> "$GITHUB_OUTPUT"
+              echo "dir=packages/simulation-core" >> "$GITHUB_OUTPUT"
+              echo "version=${GITHUB_REF_NAME#simulation-core-v}" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "Unsupported tag: $GITHUB_REF_NAME" >&2
+              exit 1
+              ;;
+          esac
+
+      - name: Verify tag matches package version
+        run: |
+          PACKAGE_VERSION=$(node -p "require('./${{ steps.target.outputs.dir }}/package.json').version")
+          if [ "$PACKAGE_VERSION" != "${{ steps.target.outputs.version }}" ]; then
+            echo "Tag version ${{ steps.target.outputs.version }} != package.json $PACKAGE_VERSION" >&2
+            exit 1
+          fi
+
+      - name: Verify
+        run: pnpm verify
+
+      - name: Publish
+        run: pnpm --filter "${{ steps.target.outputs.name }}" publish --no-git-checks --access restricted
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
