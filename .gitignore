@@ -30,3 +30,4 @@ pnpm-debug.log*
 test-results/
 playwright-report/
 docs/baseline/**/raw/
+*.tgz

@@ -10,6 +10,8 @@
  * this file (minus capturedAt/counts) before any domain controller is ported.
  */
 
+/* global db, print */
+
 const database = db.getSiblingDB(db.getName());
 
 const collections = database
@@ -26,15 +28,18 @@ const collections = database
       ...(index.expireAfterSeconds !== undefined
         ? { expireAfterSeconds: index.expireAfterSeconds }
         : {}),
-      ...(index.partialFilterExpression ? { partialFilterExpression: index.partialFilterExpression } : {}),
+      ...(index.partialFilterExpression
+        ? { partialFilterExpression: index.partialFilterExpression }
+        : {}),
     }));
 
-    let count = null;
-    try {
-      count = collection.estimatedDocumentCount();
-    } catch {
-      count = null;
-    }
+    const count = (() => {
+      try {
+        return collection.estimatedDocumentCount();
+      } catch {
+        return null;
+      }
+    })();
 
     return {
       name,

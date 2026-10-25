@@ -16,7 +16,7 @@
  */
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, extname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -48,7 +48,9 @@ function parseArgs(argv) {
     } else if (arg === '--check') {
       args.check = true;
     } else if (arg === '--help' || arg === '-h') {
-      console.log('Usage: node scripts/inventory-legacy-routes.mjs [--frontend <dir>] [--out <file>] [--check]');
+      console.log(
+        'Usage: node scripts/inventory-legacy-routes.mjs [--frontend <dir>] [--out <file>] [--check]',
+      );
       process.exit(0);
     } else {
       console.error(`Unknown argument: ${arg}`);
@@ -86,9 +88,7 @@ function detectMethods(source) {
   const found = new Set();
 
   for (const method of HTTP_METHODS) {
-    const exported = new RegExp(
-      `export\\s+(?:const|async\\s+function|function)\\s+${method}\\b`,
-    );
+    const exported = new RegExp(`export\\s+(?:const|async\\s+function|function)\\s+${method}\\b`);
     const assigned = new RegExp(`export\\s*\\{[^}]*\\b${method}\\b[^}]*\\}`);
     if (exported.test(source) || assigned.test(source)) found.add(method);
   }
@@ -134,7 +134,7 @@ function detectModules(source) {
 
 function pathToRegex(apiPath) {
   const escaped = apiPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const dynamic = escaped.replace(/\\\[[^\]]+\\\]/g, "[^'\"`\\s/)]+");
+  const dynamic = escaped.replace(/\\\[[^\]]+\\\]/g, '[^\'"`\\s/)]+');
   return new RegExp(`${dynamic}(?![/A-Za-z0-9_-])`, 'g');
 }
 
@@ -253,7 +253,9 @@ function renderMarkdown(routes, metadata) {
   lines.push(
     `- Routes referenced by UI code: **${routes.filter((route) => route.consumers.length > 0).length}**`,
   );
-  lines.push(`- Routes with no UI reference: **${routes.filter((route) => route.consumers.length === 0).length}**`);
+  lines.push(
+    `- Routes with no UI reference: **${routes.filter((route) => route.consumers.length === 0).length}**`,
+  );
   lines.push('');
   lines.push('## Summary by domain');
   lines.push('');
@@ -386,8 +388,7 @@ function main() {
   if (args.out) {
     if (args.check) {
       const existing = existsSync(args.out) ? readFileSync(args.out, 'utf8') : '';
-      const normalize = (value) =>
-        value.replace(/^- Generated at:.*$/m, '').replace(/\r\n/g, '\n');
+      const normalize = (value) => value.replace(/^- Generated at:.*$/m, '').replace(/\r\n/g, '\n');
       if (normalize(existing) !== normalize(markdown)) {
         console.error(`Inventory is out of date: ${args.out}`);
         process.exit(1);

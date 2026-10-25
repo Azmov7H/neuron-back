@@ -6,20 +6,22 @@ This repository is the backend half of the frontend/backend split. The Next.js a
 stays in [`Azmov7H/neuron`](https://github.com/Azmov7H/neuron). The two applications are
 independently buildable and deployable.
 
-> **Status:** T00 (baseline, inventory, ADR) — no runtime code yet. The NestJS application is
+> **Status:** T00 complete on `chore/decouple-00-baseline`; T01 workspace and release pipeline
+> on `chore/decouple-01-workspace`. No NestJS runtime code yet; the API application is
 > scaffolded in T04.
 
 ## Documents
 
-| Document | Purpose |
-| --- | --- |
-| Full plan | `docs/backend-decoupling-plan.md` in the frontend repo (currently uncommitted on `rd/ui-02/explore`) |
-| [`docs/adr/0001-backend-repository-and-stack.md`](docs/adr/0001-backend-repository-and-stack.md) | Why two repositories, the backend stack, and how shared packages are distributed |
-| [`docs/legacy-route-inventory.md`](docs/legacy-route-inventory.md) | Generated inventory of all 85 legacy route handlers and 124 operations |
-| [`docs/baseline.md`](docs/baseline.md) | Measurement protocol, metric definitions, and acceptance budgets |
-| [`docs/parity-harness.md`](docs/parity-harness.md) | Golden-master record/replay contract for proving behavior is unchanged |
-| [`docs/mongo-fingerprint.json`](docs/mongo-fingerprint.json) | Read-only collection and index fingerprint captured at T00 |
-| [`docs/tasks/T00-baseline.md`](docs/tasks/T00-baseline.md) | T00 branch, scope, evidence, and exit gate |
+| Document                                                                                         | Purpose                                                                                              |
+| ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| Full plan                                                                                        | `docs/backend-decoupling-plan.md` in the frontend repo (currently uncommitted on `rd/ui-02/explore`) |
+| [`docs/adr/0001-backend-repository-and-stack.md`](docs/adr/0001-backend-repository-and-stack.md) | Why two repositories, the backend stack, and how shared packages are distributed                     |
+| [`docs/legacy-route-inventory.md`](docs/legacy-route-inventory.md)                               | Generated inventory of all 85 legacy route handlers and 124 operations                               |
+| [`docs/baseline.md`](docs/baseline.md)                                                           | Measurement protocol, metric definitions, and acceptance budgets                                     |
+| [`docs/parity-harness.md`](docs/parity-harness.md)                                               | Golden-master record/replay contract for proving behavior is unchanged                               |
+| [`docs/mongo-fingerprint.json`](docs/mongo-fingerprint.json)                                     | Read-only collection and index fingerprint captured at T00                                           |
+| [`docs/tasks/T00-baseline.md`](docs/tasks/T00-baseline.md)                                       | T00 branch, scope, evidence, and exit gate                                                           |
+| [`docs/tasks/T01-workspace.md`](docs/tasks/T01-workspace.md)                                     | T01 workspace, tooling, release pipeline, and the blocked frontend half                              |
 
 ## Principles
 
@@ -38,12 +40,12 @@ independently buildable and deployable.
 
 ## Local prerequisites
 
-| Tool | Version |
-| --- | --- |
-| Node.js | 22 LTS (pin before T01) |
-| pnpm | 10.15.0 |
-| MongoDB | 8.x |
-| Redis | 7.x |
+| Tool    | Version           |
+| ------- | ----------------- |
+| Node.js | 22 LTS (`.nvmrc`) |
+| pnpm    | 12.x              |
+| MongoDB | 8.x               |
+| Redis   | 7.x               |
 
 ## Repository conventions
 
@@ -77,13 +79,23 @@ mongosh "mongodb://localhost:27017/neuron" --quiet --file scripts/mongo-fingerpr
   > docs/mongo-fingerprint.json
 ```
 
-## Planned layout
+## Layout
 
 ```text
-apps/api/                  NestJS application
+apps/api/                  NestJS application (reserved in T01, scaffolded in T04)
 packages/contracts/        @azmov7h/neuron-contracts
 packages/simulation-core/  @azmov7h/neuron-simulation-core
 scripts/                   Reproducible inventories and fingerprints
 docs/                      ADRs, baselines, parity contract, task records
 test/parity/               Fixtures, recordings, and the parity runner (T03)
 ```
+
+## Verification
+
+```bash
+pnpm install --frozen-lockfile
+pnpm verify
+```
+
+`pnpm verify` runs formatting, lint, typecheck, tests, and the package builds. CI runs the same
+sequence on Node 22.
