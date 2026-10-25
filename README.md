@@ -6,10 +6,10 @@ This repository is the backend half of the frontend/backend split. The Next.js a
 stays in [`Azmov7H/neuron`](https://github.com/Azmov7H/neuron). The two applications are
 independently buildable and deployable.
 
-> **Status:** T00 and the workspace half of T01 are merged. The NestJS runtime skeleton and the
-> Vercel deployment path are in progress on `chore/decouple-01-vercel-deploy`. Domain modules,
-> MongoDB, and authentication arrive in T04. The frontend half of T01
-> (`NEXT_PUBLIC_API_BASE_URL` and the import-boundary guard) is tracked in the frontend repo.
+> **Status:** T00 and T01 (workspace + Vercel deployment) are merged. T02 populates the shared
+> contracts and simulation-core packages. Domain modules, MongoDB, and authentication arrive in
+> T04. The frontend half of T01 (`NEXT_PUBLIC_API_BASE_URL` and the import-boundary guard) is
+> tracked in the frontend repo.
 
 ## Documents
 
@@ -25,6 +25,7 @@ independently buildable and deployable.
 | [`docs/tasks/T00-baseline.md`](docs/tasks/T00-baseline.md)                                       | T00 branch, scope, evidence, and exit gate                                                           |
 | [`docs/tasks/T01-workspace.md`](docs/tasks/T01-workspace.md)                                     | T01 workspace, tooling, release pipeline, and the blocked frontend half                              |
 | [`docs/tasks/T01-vercel-deploy.md`](docs/tasks/T01-vercel-deploy.md)                             | T01 NestJS runtime skeleton, Vercel builder evidence, and exit gate                                  |
+| [`docs/tasks/T02-contracts.md`](docs/tasks/T02-contracts.md)                                     | T02 package contents, behavior guarantees, and test evidence                                         |
 | [`docs/deployment.md`](docs/deployment.md)                                                       | Vercel project settings, environment variables, verification, limits, and rollback                   |
 
 ## Principles
@@ -117,6 +118,6 @@ pnpm install --frozen-lockfile
 pnpm verify
 ```
 
-`pnpm verify` runs formatting, lint, typecheck, the production build, and the HTTP tests. The
-tests boot the compiled app, so `pnpm test` requires `pnpm build` first. CI runs the same
-sequence on Node 22.
+`pnpm verify` runs formatting, lint, typecheck, the production build, the package tests
+(Vitest), and the HTTP tests. The HTTP tests boot the compiled app, so `pnpm test` requires
+`pnpm build` first. CI runs the same sequence on Node 22.
