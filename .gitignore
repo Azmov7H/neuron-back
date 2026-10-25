@@ -2,6 +2,9 @@
 node_modules/
 .pnpm-store/
 
+# Vercel local state
+.vercel/
+
 # Build output
 dist/
 build/

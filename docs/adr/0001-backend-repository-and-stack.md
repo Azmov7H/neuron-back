@@ -116,7 +116,10 @@ duplication is temporary and ends in T02, not in T21.
 ### 7. Deployment
 
 - Frontend: existing Vercel project, unchanged root.
-- Backend: container image deployed independently, health-checked at `/api/v1/health`.
+- Backend: Vercel Functions using the NestJS framework preset, deployed from the GitHub
+  integration in this repository. See [ADR-002](0002-vercel-serverless-hosting.md), which
+  supersedes the original container plan.
+- `/api/v1/health` is the liveness probe; readiness checks are added in T04.
 - Cutover and rollback are controlled by module flags read at request time. The legacy Next
   route handlers remain available for the seven-day soak window.
 

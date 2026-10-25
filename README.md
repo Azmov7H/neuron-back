@@ -6,9 +6,10 @@ This repository is the backend half of the frontend/backend split. The Next.js a
 stays in [`Azmov7H/neuron`](https://github.com/Azmov7H/neuron). The two applications are
 independently buildable and deployable.
 
-> **Status:** T00 and the backend half of T01 are merged. The frontend half of T01
-> (`NEXT_PUBLIC_API_BASE_URL` and the import-boundary guard) is in progress. No NestJS runtime
-> code yet; the API application is scaffolded in T04.
+> **Status:** T00 and the workspace half of T01 are merged. The NestJS runtime skeleton and the
+> Vercel deployment path are in progress on `chore/decouple-01-vercel-deploy`. Domain modules,
+> MongoDB, and authentication arrive in T04. The frontend half of T01
+> (`NEXT_PUBLIC_API_BASE_URL` and the import-boundary guard) is tracked in the frontend repo.
 
 ## Documents
 
@@ -16,13 +17,15 @@ independently buildable and deployable.
 | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | Full plan                                                                                        | `docs/backend-decoupling-plan.md` in the frontend repo (currently uncommitted on `rd/ui-02/explore`) |
 | [`docs/adr/0001-backend-repository-and-stack.md`](docs/adr/0001-backend-repository-and-stack.md) | Why two repositories, the backend stack, and how shared packages are distributed                     |
+| [`docs/adr/0002-vercel-serverless-hosting.md`](docs/adr/0002-vercel-serverless-hosting.md)       | Vercel Functions hosting decision, serverless constraints, and rollback                              |
 | [`docs/legacy-route-inventory.md`](docs/legacy-route-inventory.md)                               | Generated inventory of all 85 legacy route handlers and 124 operations                               |
 | [`docs/baseline.md`](docs/baseline.md)                                                           | Measurement protocol, metric definitions, and acceptance budgets                                     |
 | [`docs/parity-harness.md`](docs/parity-harness.md)                                               | Golden-master record/replay contract for proving behavior is unchanged                               |
 | [`docs/mongo-fingerprint.json`](docs/mongo-fingerprint.json)                                     | Read-only collection and index fingerprint captured at T00                                           |
 | [`docs/tasks/T00-baseline.md`](docs/tasks/T00-baseline.md)                                       | T00 branch, scope, evidence, and exit gate                                                           |
 | [`docs/tasks/T01-workspace.md`](docs/tasks/T01-workspace.md)                                     | T01 workspace, tooling, release pipeline, and the blocked frontend half                              |
-| [`docs/deployment.md`](docs/deployment.md)                                                       | Frontend/backend hosting boundaries and the Vercel misconfiguration guard                            |
+| [`docs/tasks/T01-vercel-deploy.md`](docs/tasks/T01-vercel-deploy.md)                             | T01 NestJS runtime skeleton, Vercel builder evidence, and exit gate                                  |
+| [`docs/deployment.md`](docs/deployment.md)                                                       | Vercel project settings, environment variables, verification, limits, and rollback                   |
 
 ## Principles
 
@@ -83,13 +86,29 @@ mongosh "mongodb://localhost:27017/neuron" --quiet --file scripts/mongo-fingerpr
 ## Layout
 
 ```text
-apps/api/                  NestJS application (reserved in T01, scaffolded in T04)
+src/                       NestJS application (entry: src/main.ts, output: dist/)
 packages/contracts/        @azmov7h/neuron-contracts
 packages/simulation-core/  @azmov7h/neuron-simulation-core
 scripts/                   Reproducible inventories and fingerprints
 docs/                      ADRs, baselines, parity contract, task records
+test/                      HTTP tests for the compiled application
 test/parity/               Fixtures, recordings, and the parity runner (T03)
+vercel.json                NestJS framework preset, install, and build commands
 ```
+
+The application sits at the repository root so Vercel's NestJS builder can find `src/main.ts`
+without a dashboard Root Directory override. Shared packages stay in the pnpm workspace.
+
+## Run the API
+
+```bash
+pnpm install
+pnpm dev                                  # nest start --watch on port 3000
+curl http://localhost:3000/api/v1/health
+```
+
+`pnpm dev` is plain Nest; use `vercel dev -L` when you need production build parity. Deployment
+settings and environment variables are documented in [`docs/deployment.md`](docs/deployment.md).
 
 ## Verification
 
@@ -98,5 +117,6 @@ pnpm install --frozen-lockfile
 pnpm verify
 ```
 
-`pnpm verify` runs formatting, lint, typecheck, tests, and the package builds. CI runs the same
+`pnpm verify` runs formatting, lint, typecheck, the production build, and the HTTP tests. The
+tests boot the compiled app, so `pnpm test` requires `pnpm build` first. CI runs the same
 sequence on Node 22.

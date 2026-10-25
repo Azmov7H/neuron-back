@@ -23,7 +23,7 @@ Rollback: revert this branch in both repositories. No runtime or data change.
 | Area | Result |
 | --- | --- |
 | Workspace | `pnpm-workspace.yaml` with `apps/*` and `packages/*` |
-| API slot | `apps/api` reserved, private, no runtime code (T04) |
+| API slot | `apps/api` reserved, private, no runtime code (T04) — **superseded:** the app moved to the repository root for Vercel's Nest builder; see [`T01-vercel-deploy.md`](T01-vercel-deploy.md) |
 | Contracts | `@azmov7h/neuron-contracts` builds to ESM + declarations |
 | Simulation core | `@azmov7h/neuron-simulation-core` builds to ESM + declarations |
 | Tooling | ESLint 10 flat config, Prettier 3, TypeScript 5.9 strict |
